@@ -1,11 +1,9 @@
-import { act, render, screen } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
 import user from "@testing-library/user-event";
-import { RouterProvider, createMemoryRouter } from "react-router-dom";
-import { routes } from "routers";
+import { setup } from "./routing";
 
 test("회원가입 페이지에 이메일과 비밀번호 유효성 검사 모두 성공할 때", () => {
-	const router = createMemoryRouter(routes, { initialEntries: ["/signup"] });
-	render(<RouterProvider router={router} />);
+	setup(["/signup"]);
 
 	const emailInput = screen.getByTestId("email-input");
 	const passwordInput = screen.getByTestId("password-input");
@@ -20,9 +18,7 @@ test("회원가입 페이지에 이메일과 비밀번호 유효성 검사 모�
 });
 
 test("회원가입 페이지에서 이메일이 실패했을 때 버튼 disabled", () => {
-	const router = createMemoryRouter(routes, { initialEntries: ["/signup"] });
-	render(<RouterProvider router={router} />);
-
+	setup(["/signup"]);
 	const emailInput = screen.getByTestId("email-input");
 	const passwordInput = screen.getByTestId("password-input");
 
@@ -36,8 +32,7 @@ test("회원가입 페이지에서 이메일이 실패했을 때 버튼 disabled
 });
 
 test("회원가입 페이지에서 비밀번호 실패했을 때 버튼 disabled", () => {
-	const router = createMemoryRouter(routes, { initialEntries: ["/signup"] });
-	render(<RouterProvider router={router} />);
+	setup(["/signup"]);
 
 	const emailInput = screen.getByTestId("email-input");
 	const passwordInput = screen.getByTestId("password-input");
