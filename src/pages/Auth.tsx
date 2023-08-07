@@ -3,6 +3,9 @@ import { useLocation } from "react-router-dom";
 import { authPolicy } from "constants/authPolicy";
 import Button from "components/Button";
 import Input from "components/Input";
+import { usePostAuthSignup } from "api/usePostAuthSignup";
+import { usePostAuthSignin } from "api/usePostAuthSignin";
+import { styled } from "styled-components";
 
 const Auth = () => {
 	const [email, setEmail] = useState("");
@@ -13,10 +16,19 @@ const Auth = () => {
 	const isEmailValid = authPolicy.email.validator(email);
 	const isPasswordValid = authPolicy.password.validator(password);
 
+	const { signup, message: signupError } = usePostAuthSignup();
+	const { signin, message: signInError } = usePostAuthSignin();
+
+	const request = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		const request = isSignup ? signup : signin;
+		request(email, password);
+	};
+
 	return (
 		<main>
 			<h1>{stage}</h1>
-			<form>
+			<form onSubmit={request}>
 				<Input
 					id="email"
 					labelText="이메일"
@@ -43,9 +55,15 @@ const Auth = () => {
 				>
 					{stage}
 				</Button>
+				<ErrorMessage>{signupError || signInError}</ErrorMessage>
 			</form>
 		</main>
 	);
 };
 
 export default Auth;
+
+const ErrorMessage = styled.p`
+	color: red;
+	font-size: 0.8rem;
+`;
