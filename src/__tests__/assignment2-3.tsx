@@ -12,9 +12,6 @@ beforeAll(() => {
 
 afterEach(() => {
 	nock.cleanAll();
-});
-
-afterAll(() => {
 	jest.clearAllMocks();
 });
 
@@ -23,7 +20,7 @@ test("회원가입 요청 성공시 리다이렉트", async () => {
 
 	nock(apiUrl)
 		.post("/auth/signup", { email: "test@!", password: "12345678" })
-		.reply(201);
+		.reply(200);
 
 	act(() => {
 		user.type(screen.getByLabelText("이메일"), "test@!");
@@ -56,10 +53,18 @@ test("회원가입 요청 실패시 에러메시지 출력", async () => {
 });
 
 test("로그인 요청 성공시 토큰 저장 후 리다이렉트", async () => {
+	let isSetItemCalled = false;
 	const { router } = setup(["/signin"]);
 
-	jest.spyOn(Storage.prototype, "setItem");
-	Storage.prototype.setItem = jest.fn();
+	const setItem = () => {
+		isSetItemCalled = true;
+	};
+	const getItem = (key: string) => {
+		return isSetItemCalled && key === "token" ? "avaliable" : null;
+	};
+
+	jest.spyOn(Storage.prototype, "setItem").mockImplementation(setItem);
+	jest.spyOn(Storage.prototype, "getItem").mockImplementation(getItem);
 
 	nock(apiUrl)
 		.post("/auth/signin", { email: "test@!", password: "12345678" })
