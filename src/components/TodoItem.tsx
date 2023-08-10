@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { usePutTodosId } from "api/usePutTodosId";
 import { useDeleteTodosId } from "api/useDeleteTodosId";
 import { Todo } from "types/Todo";
+import CheckBox from "components/CheckBox";
 import Button from "components/Button";
 
 interface IProps {
@@ -9,22 +9,19 @@ interface IProps {
 	removeTodo: (id: number) => void;
 }
 const TodoItem = ({ todo, removeTodo }: IProps) => {
-	const [isCompleted, setIsCompleted] = useState(todo.isCompleted);
 	const { changeTodo } = usePutTodosId();
 	const { deleteTodo } = useDeleteTodosId();
 
-	const changeIsCompleted = () => {
-		setIsCompleted(!isCompleted);
-		changeTodo({ ...todo, isCompleted: !isCompleted });
+	const changeChecked = (checked: boolean) => {
+		changeTodo({ ...todo, isCompleted: checked });
 	};
 
 	return (
 		<li>
 			<label>
-				<input
-					type="checkbox"
-					checked={isCompleted}
-					onChange={changeIsCompleted}
+				<CheckBox
+					initialChecked={todo.isCompleted}
+					changeChecked={changeChecked}
 				/>
 				<span>{todo.todo}</span>
 				<Button data-testid="modify-button" onClick={() => {}}>
