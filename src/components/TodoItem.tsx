@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { usePutTodosId } from "api/usePutTodosId";
 import { Todo } from "types/Todo";
 
 interface IProps {
@@ -6,6 +7,12 @@ interface IProps {
 }
 const TodoItem = ({ todo }: IProps) => {
 	const [isCompleted, setIsCompleted] = useState(todo.isCompleted);
+	const { changeTodo } = usePutTodosId();
+
+	const changeIsCompleted = () => {
+		setIsCompleted(!isCompleted);
+		changeTodo({ ...todo, isCompleted: !isCompleted });
+	};
 
 	return (
 		<li>
@@ -13,7 +20,7 @@ const TodoItem = ({ todo }: IProps) => {
 				<input
 					type="checkbox"
 					checked={isCompleted}
-					onChange={() => setIsCompleted(!isCompleted)}
+					onChange={changeIsCompleted}
 				/>
 				<span>{todo.todo}</span>
 			</label>
