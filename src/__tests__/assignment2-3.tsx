@@ -23,7 +23,7 @@ test("회원가입 요청 성공시 리다이렉트", async () => {
 
 	nock(apiUrl)
 		.post("/auth/signup", { email: "test@!", password: "12345678" })
-		.reply(200);
+		.reply(201);
 
 	act(() => {
 		user.type(screen.getByLabelText("이메일"), "test@!");
@@ -63,7 +63,7 @@ test("로그인 요청 성공시 토큰 저장 후 리다이렉트", async () =>
 
 	nock(apiUrl)
 		.post("/auth/signin", { email: "test@!", password: "12345678" })
-		.reply(200, { token: "token" });
+		.reply(200, { access_token: "token" });
 
 	act(() => {
 		user.type(screen.getByLabelText("이메일"), "test@!");

@@ -8,7 +8,7 @@ export const usePostAuthSignin = () => {
 	const { request } = useApi();
 
 	const saveTokenAndRedirect = (response: any) => {
-		localStorage.setItem("token", response.data.token);
+		localStorage.setItem("token", response.data.access_token);
 		navigate("/todo");
 	};
 
