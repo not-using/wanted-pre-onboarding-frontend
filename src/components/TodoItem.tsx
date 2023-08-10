@@ -2,7 +2,7 @@ import { usePutTodosId } from "api/usePutTodosId";
 import { useDeleteTodosId } from "api/useDeleteTodosId";
 import { Todo } from "types/Todo";
 import CheckBox from "components/CheckBox";
-import Button from "components/Button";
+import EditableTodo from "components/EditableTodo";
 
 interface IProps {
 	todo: Todo;
@@ -16,6 +16,10 @@ const TodoItem = ({ todo, removeTodo }: IProps) => {
 		changeTodo({ ...todo, isCompleted: checked });
 	};
 
+	const changeText = (text: string) => {
+		changeTodo({ ...todo, todo: text });
+	};
+
 	return (
 		<li>
 			<label>
@@ -23,16 +27,11 @@ const TodoItem = ({ todo, removeTodo }: IProps) => {
 					initialChecked={todo.isCompleted}
 					changeChecked={changeChecked}
 				/>
-				<span>{todo.todo}</span>
-				<Button data-testid="modify-button" onClick={() => {}}>
-					수정
-				</Button>
-				<Button
-					data-testid="delete-button"
-					onClick={() => deleteTodo(todo.id, removeTodo)}
-				>
-					삭제
-				</Button>
+				<EditableTodo
+					initialValue={todo.todo}
+					deleteTodo={() => deleteTodo(todo.id, removeTodo)}
+					changeText={changeText}
+				/>
 			</label>
 		</li>
 	);
