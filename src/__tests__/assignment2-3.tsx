@@ -4,6 +4,7 @@ import nock from "nock";
 import { setup } from "./routing";
 import { apiUrl } from "constants/apiUrl";
 import { axiosInstance } from "constants/axios";
+import { todos } from "fixtures/todos";
 
 beforeAll(() => {
 	// xhr adapter 일 경우 nock 사용 불가능
@@ -69,6 +70,8 @@ test("로그인 요청 성공시 토큰 저장 후 리다이렉트", async () =>
 	nock(apiUrl)
 		.post("/auth/signin", { email: "test@!", password: "12345678" })
 		.reply(200, { access_token: "token" });
+
+	nock(apiUrl).get("/todos").reply(200, todos);
 
 	act(() => {
 		user.type(screen.getByLabelText("이메일"), "test@!");
