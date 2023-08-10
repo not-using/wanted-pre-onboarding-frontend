@@ -1,14 +1,19 @@
 import { useGetTodos } from "api/useGetTodos";
-import TodoItem from "./TodoItem";
+import TodoItem from "components/TodoItem";
+import NewTodo from "components/NewTodo";
 
 const TodoList = () => {
-	const { todos } = useGetTodos();
+	const { todos, addTodo } = useGetTodos();
+
 	return (
-		<ul>
-			{todos.map((todo) => (
-				<TodoItem key={todo.id} todo={todo} />
-			))}
-		</ul>
+		<>
+			<NewTodo addTodo={addTodo} />
+			<ul>
+				{todos.map((todo) => (
+					<TodoItem key={todo.id} todo={todo} />
+				))}
+			</ul>
+		</>
 	);
 };
 
