@@ -16,8 +16,8 @@ export const useApi = () => {
 		}
 	) => {
 		const axiosPromise =
-			method === "get"
-				? axiosInstance.get(url, { params: options?.data, ...config })
+			method === "get" || method === "delete"
+				? axiosInstance[method](url, { params: options?.data, ...config })
 				: axiosInstance[method](url, options?.data, config);
 		axiosPromise
 			.then((response) => options?.onSuccess && options.onSuccess(response))
