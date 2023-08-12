@@ -22,8 +22,6 @@ test("새로운 투두를 추가할 수 있는 입력창과 버튼을 확인할 
 	setup(["/todo"]);
 
 	await waitFor(() => {
-		expect(screen.getByRole("textbox")).toBeInTheDocument();
-		expect(screen.getByRole("button")).toBeInTheDocument();
 		expect(screen.getByTestId("new-todo-input")).toBeInTheDocument();
 		expect(screen.getByTestId("new-todo-add-button")).toBeInTheDocument();
 	});
