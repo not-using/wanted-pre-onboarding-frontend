@@ -8,7 +8,7 @@ interface IProps extends ComponentProps<"input"> {
 	invalidMessage?: string;
 }
 
-const Input = ({
+const AuthInput = ({
 	id,
 	labelText,
 	value,
@@ -26,7 +26,7 @@ const Input = ({
 	);
 };
 
-export default Input;
+export default AuthInput;
 
 const Wrapper = styled.div`
 	display: flex;

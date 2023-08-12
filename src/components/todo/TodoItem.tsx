@@ -2,7 +2,7 @@ import { usePutTodosId } from "api/usePutTodosId";
 import { useDeleteTodosId } from "api/useDeleteTodosId";
 import { Todo } from "types/Todo";
 import CheckBox from "components/CheckBox";
-import EditableTodo from "components/EditableTodo";
+import EditableTodo from "components/todo/EditableTodo";
 
 interface IProps {
 	todo: Todo;

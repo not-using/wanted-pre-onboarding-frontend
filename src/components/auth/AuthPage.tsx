@@ -5,9 +5,9 @@ import { usePostAuthSignin } from "api/usePostAuthSignin";
 import { authPolicy } from "constants/authPolicy";
 import { styled } from "styled-components";
 import Button from "components/Button";
-import Input from "components/Input";
+import AuthInput from "components/auth/AuthInput";
 
-const Auth = () => {
+const AuthPage = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -29,7 +29,7 @@ const Auth = () => {
 		<>
 			<h1>{stage}</h1>
 			<form onSubmit={request}>
-				<Input
+				<AuthInput
 					id="email"
 					labelText="이메일"
 					data-testid="email-input"
@@ -38,7 +38,7 @@ const Auth = () => {
 					invalidMessage={authPolicy.email.invalidMessage}
 					onChange={(e) => setEmail(e.target.value)}
 				/>
-				<Input
+				<AuthInput
 					id="password"
 					labelText="비밀번호"
 					type="password"
@@ -61,7 +61,7 @@ const Auth = () => {
 	);
 };
 
-export default Auth;
+export default AuthPage;
 
 const ErrorMessage = styled.p`
 	color: red;

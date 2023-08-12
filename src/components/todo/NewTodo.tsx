@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { usePostTodos } from "api/usePostTodos";
 import { Todo } from "types/Todo";
-import Input from "components/Input";
+import AuthInput from "components/auth/AuthInput";
 import Button from "components/Button";
 
 interface IProps {
@@ -19,7 +19,7 @@ const NewTodo = ({ addTodo }: IProps) => {
 				createTodo(todo);
 			}}
 		>
-			<Input
+			<AuthInput
 				id="newTodo"
 				labelText=""
 				data-testid="new-todo-input"

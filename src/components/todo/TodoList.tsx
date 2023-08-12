@@ -1,6 +1,6 @@
 import { useGetTodos } from "api/useGetTodos";
-import TodoItem from "components/TodoItem";
-import NewTodo from "components/NewTodo";
+import TodoItem from "components/todo/TodoItem";
+import NewTodo from "components/todo/NewTodo";
 
 const TodoList = () => {
 	const { todos, addTodo, removeTodo } = useGetTodos();
