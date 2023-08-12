@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { authPolicy } from "constants/authPolicy";
-import Button from "components/Button";
-import Input from "components/Input";
 import { usePostAuthSignup } from "api/usePostAuthSignup";
 import { usePostAuthSignin } from "api/usePostAuthSignin";
+import { authPolicy } from "constants/authPolicy";
 import { styled } from "styled-components";
+import Button from "components/Button";
+import Input from "components/Input";
 
 const Auth = () => {
 	const [email, setEmail] = useState("");
@@ -26,7 +26,7 @@ const Auth = () => {
 	};
 
 	return (
-		<main>
+		<>
 			<h1>{stage}</h1>
 			<form onSubmit={request}>
 				<Input
@@ -57,7 +57,7 @@ const Auth = () => {
 				</Button>
 				<ErrorMessage>{signupError || signInError}</ErrorMessage>
 			</form>
-		</main>
+		</>
 	);
 };
 
