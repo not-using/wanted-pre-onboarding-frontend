@@ -4,7 +4,7 @@ import { Todo } from "types/Todo";
 export const usePutTodosId = () => {
 	const { request } = useApi();
 
-	const changeTodo = (todo: Todo, onSuccess?: () => void) => {
+	const putRequest = (todo: Todo, onSuccess?: () => void) => {
 		const changed = { isCompleted: todo.isCompleted, todo: todo.todo };
 
 		request("put", `todos/${todo.id}`, {
@@ -12,5 +12,5 @@ export const usePutTodosId = () => {
 			onSuccess,
 		});
 	};
-	return { changeTodo };
+	return { putRequest };
 };

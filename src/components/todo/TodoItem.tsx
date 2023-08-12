@@ -11,16 +11,20 @@ interface IProps {
 }
 
 const TodoItem = ({ todo }: IProps) => {
-	const { changeTodo } = usePutTodosId();
-	const { deleteTodo } = useDeleteTodosId();
+	const { putRequest } = usePutTodosId();
+	const { deleteRequest } = useDeleteTodosId();
 	const { removeTodo } = useTodos();
 
 	const changeChecked = (checked: boolean) => {
-		changeTodo({ ...todo, isCompleted: checked });
+		putRequest({ ...todo, isCompleted: checked });
 	};
 
 	const changeText = (text: string) => {
-		changeTodo({ ...todo, todo: text });
+		putRequest({ ...todo, todo: text });
+	};
+
+	const deleteTodo = () => {
+		deleteRequest(todo.id, removeTodo);
 	};
 
 	return (
@@ -32,7 +36,7 @@ const TodoItem = ({ todo }: IProps) => {
 				/>
 				<EditableTodo
 					initialValue={todo.todo}
-					deleteTodo={() => deleteTodo(todo.id, removeTodo)}
+					deleteTodo={deleteTodo}
 					changeText={changeText}
 				/>
 			</label>
