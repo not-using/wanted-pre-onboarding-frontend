@@ -19,9 +19,8 @@ const NewTodo = ({ addTodo }: IProps) => {
 				createTodo(todo);
 			}}
 		>
-			<AuthInput
+			<input
 				id="newTodo"
-				labelText=""
 				data-testid="new-todo-input"
 				value={todo}
 				onChange={(e) => setTodo(e.currentTarget.value)}
