@@ -23,7 +23,8 @@ const SignButton = () => {
 	) : (
 		<span>
 			<SignUpLink to="/signup">
-				회원이 아니신가요? <Bold>회원가입</Bold>
+				<Week>회원이 아니신가요? </Week>
+				<Bold>회원가입</Bold>
 			</SignUpLink>
 			<SignInLink to="/signin">로그인</SignInLink>
 		</span>
@@ -32,8 +33,13 @@ const SignButton = () => {
 
 export default SignButton;
 
-const SignUpLink = styled(StyledLink)`
+const SignUpLink = styled(StyledLink)``;
+
+const Week = styled.span`
 	color: grey;
+	@media screen and (max-width: 420px) {
+		display: none;
+	}
 `;
 
 const Bold = styled.b`

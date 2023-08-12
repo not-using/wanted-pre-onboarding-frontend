@@ -17,7 +17,8 @@ export default Layout;
 
 export const StyledMain = styled.main`
 	max-width: 1200px;
-	padding: 1rem;
+	min-width: 300px;
+	padding: 1rem 2rem;
 	margin: 0 auto;
 	box-sizing: border-box;
 `;
