@@ -1,6 +1,7 @@
 import { usePutTodosId } from "api/usePutTodosId";
 import { useDeleteTodosId } from "api/useDeleteTodosId";
 import { Todo } from "types/Todo";
+import { styled } from "styled-components";
 import CheckBox from "components/CheckBox";
 import EditableTodo from "components/todo/EditableTodo";
 
@@ -21,7 +22,7 @@ const TodoItem = ({ todo, removeTodo }: IProps) => {
 	};
 
 	return (
-		<li>
+		<StyledList>
 			<label>
 				<CheckBox
 					initialChecked={todo.isCompleted}
@@ -33,8 +34,13 @@ const TodoItem = ({ todo, removeTodo }: IProps) => {
 					changeText={changeText}
 				/>
 			</label>
-		</li>
+		</StyledList>
 	);
 };
 
 export default TodoItem;
+
+const StyledList = styled.li`
+	list-style: none;
+	margin: 0.2rem 0;
+`

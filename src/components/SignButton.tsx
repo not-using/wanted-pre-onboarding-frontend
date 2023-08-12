@@ -57,7 +57,4 @@ const SignInLink = styled(StyledLink)`
 
 const SignOutButton = styled(Button)`
 	padding: 0.5rem 1rem;
-	background-color: black;
-	color: white;
-	border-radius: 0.25rem;
 `;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { usePostTodos } from "api/usePostTodos";
 import { Todo } from "types/Todo";
-import AuthInput from "components/auth/AuthInput";
+import { styled } from "styled-components";
 import Button from "components/Button";
 
 interface IProps {
@@ -26,9 +26,13 @@ const NewTodo = ({ addTodo }: IProps) => {
 				value={todo}
 				onChange={(e) => setTodo(e.currentTarget.value)}
 			/>
-			<Button data-testid="new-todo-add-button">추가</Button>
+			<StyledButton data-testid="new-todo-add-button">추가</StyledButton>
 		</form>
 	);
 };
 
 export default NewTodo;
+
+const StyledButton = styled(Button)`
+	margin-left: 1rem;
+`;

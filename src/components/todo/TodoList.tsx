@@ -1,4 +1,5 @@
 import { useGetTodos } from "api/useGetTodos";
+import { styled } from "styled-components";
 import TodoItem from "components/todo/TodoItem";
 import NewTodo from "components/todo/NewTodo";
 
@@ -8,13 +9,17 @@ const TodoList = () => {
 	return (
 		<>
 			<NewTodo addTodo={addTodo} />
-			<ul>
+			<StyledUl>
 				{todos.map((todo) => (
 					<TodoItem key={todo.id} todo={todo} removeTodo={removeTodo} />
 				))}
-			</ul>
+			</StyledUl>
 		</>
 	);
 };
 
 export default TodoList;
+
+const StyledUl = styled.ul`
+	padding: 0;
+`
