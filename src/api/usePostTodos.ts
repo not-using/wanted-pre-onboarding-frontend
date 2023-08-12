@@ -1,11 +1,9 @@
 import { useApi } from "hooks/useApi";
-import { Todo } from "types/Todo";
+import { useTodos } from "hooks/useTodos";
 
-interface IParams {
-	addTodo: (todo: Todo) => void;
-}
-export const usePostTodos = ({ addTodo }: IParams) => {
+export const usePostTodos = () => {
 	const { request } = useApi();
+	const { addTodo } = useTodos();
 
 	const createTodo = (todo: string) =>
 		request("post", "/todos", {

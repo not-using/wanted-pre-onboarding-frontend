@@ -1,3 +1,4 @@
+import { useTodos } from "hooks/useTodos";
 import { usePutTodosId } from "api/usePutTodosId";
 import { useDeleteTodosId } from "api/useDeleteTodosId";
 import { Todo } from "types/Todo";
@@ -7,11 +8,12 @@ import EditableTodo from "components/todo/EditableTodo";
 
 interface IProps {
 	todo: Todo;
-	removeTodo: (id: number) => void;
 }
-const TodoItem = ({ todo, removeTodo }: IProps) => {
+
+const TodoItem = ({ todo }: IProps) => {
 	const { changeTodo } = usePutTodosId();
 	const { deleteTodo } = useDeleteTodosId();
+	const { removeTodo } = useTodos();
 
 	const changeChecked = (checked: boolean) => {
 		changeTodo({ ...todo, isCompleted: checked });
@@ -43,4 +45,4 @@ export default TodoItem;
 const StyledList = styled.li`
 	list-style: none;
 	margin: 0.2rem 0;
-`
+`;

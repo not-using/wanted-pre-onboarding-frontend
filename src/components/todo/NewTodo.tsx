@@ -1,16 +1,11 @@
 import { useState } from "react";
 import { usePostTodos } from "api/usePostTodos";
-import { Todo } from "types/Todo";
 import { styled } from "styled-components";
 import Button from "components/Button";
 
-interface IProps {
-	addTodo: (todo: Todo) => void;
-}
-
-const NewTodo = ({ addTodo }: IProps) => {
+const NewTodo = () => {
 	const [todo, setTodo] = useState("");
-	const { createTodo } = usePostTodos({ addTodo });
+	const { createTodo } = usePostTodos();
 
 	return (
 		<form

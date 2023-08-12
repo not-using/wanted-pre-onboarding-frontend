@@ -1,28 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useApi } from "hooks/useApi";
-import { Todo } from "types/Todo";
+import { useTodos } from "hooks/useTodos";
 
 export const useGetTodos = () => {
-	const [todos, setTodos] = useState<Todo[]>([]);
 	const { request } = useApi();
+	const { updateTodos } = useTodos();
 
 	useEffect(() => {
 		request("get", "/todos", {
-			onSuccess: (response: any) => setTodos(response.data),
+			onSuccess: (response: any) => updateTodos(response.data),
 		});
 	}, []);
-
-	const addTodo = (todo: Todo) => {
-		setTodos([...todos, todo]);
-	};
-
-	const removeTodo = (id: number) => {
-		setTodos(todos.filter((todo) => todo.id !== id));
-	};
-
-	const updateTodo = (todo: Todo) => {
-		setTodos(todos.map((item) => (item.id === todo.id ? todo : item)));
-	};
-
-	return { todos, addTodo, removeTodo, updateTodo };
 };
