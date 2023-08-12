@@ -10,7 +10,7 @@ interface IProps {
 	message: string;
 }
 
-const AuthForm = ({ stage,  request, message }: IProps) => {
+const AuthForm = ({ stage, request, message }: IProps) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -18,7 +18,7 @@ const AuthForm = ({ stage,  request, message }: IProps) => {
 	const isPasswordValid = authPolicy.password.validator(password);
 
 	return (
-		<form
+		<Form
 			onSubmit={(e) => {
 				e.preventDefault();
 				request(email, password);
@@ -43,21 +43,39 @@ const AuthForm = ({ stage,  request, message }: IProps) => {
 				invalidMessage={authPolicy.password.invalidMessage}
 				onChange={(e) => setPassword(e.target.value)}
 			/>
-			<Button
+			<StyledButton
 				type="submit"
-				data-testid={`sign${stage==="회원가입" ? "up" : "in"}-button`}
+				data-testid={`sign${stage === "회원가입" ? "up" : "in"}-button`}
 				disabled={isEmailValid && isPasswordValid ? false : true}
 			>
 				{stage}
-			</Button>
+			</StyledButton>
 			<ErrorMessage>{message}</ErrorMessage>
-		</form>
+		</Form>
 	);
 };
 
 export default AuthForm;
 
+const Form = styled.form`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
+
 const ErrorMessage = styled.p`
 	color: red;
 	font-size: 0.8rem;
+`;
+
+const StyledButton = styled(Button)`
+	padding: 0.25rem 1rem;
+	background-color: black;
+	color: white;
+	border-radius: 0.25rem;
+	&:disabled {
+		background-color: gray;
+		cursor: not-allowed;
+	}
+	margin-top: 1rem;
 `;

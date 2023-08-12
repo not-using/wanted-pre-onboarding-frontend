@@ -12,3 +12,10 @@ export const FlexColumn = styled.div`
 	justify-content: center;
 	align-items: center;
 `;
+
+export const FlexRow = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+`;
