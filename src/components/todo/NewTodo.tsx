@@ -17,6 +17,7 @@ const NewTodo = ({ addTodo }: IProps) => {
 			onSubmit={(e) => {
 				e.preventDefault();
 				createTodo(todo);
+				setTodo("");
 			}}
 		>
 			<input
