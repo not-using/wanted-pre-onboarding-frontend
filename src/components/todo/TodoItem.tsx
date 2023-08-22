@@ -7,46 +7,46 @@ import CheckBox from "components/CheckBox";
 import EditableTodo from "components/todo/EditableTodo";
 
 interface IProps {
-	todo: Todo;
+  todo: Todo;
 }
 
 const TodoItem = ({ todo }: IProps) => {
-	const { putRequest } = usePutTodosId();
-	const { deleteRequest } = useDeleteTodosId();
-	const { removeTodo } = useTodos();
+  const { putRequest } = usePutTodosId();
+  const { deleteRequest } = useDeleteTodosId();
+  const { removeTodo } = useTodos();
 
-	const changeChecked = (checked: boolean) => {
-		putRequest({ ...todo, isCompleted: checked });
-	};
+  const changeChecked = (checked: boolean) => {
+    putRequest({ ...todo, isCompleted: checked });
+  };
 
-	const changeText = (text: string) => {
-		putRequest({ ...todo, todo: text });
-	};
+  const changeText = (text: string) => {
+    putRequest({ ...todo, todo: text });
+  };
 
-	const deleteTodo = () => {
-		deleteRequest(todo.id, removeTodo);
-	};
+  const deleteTodo = () => {
+    deleteRequest(todo.id, removeTodo);
+  };
 
-	return (
-		<StyledList>
-			<label>
-				<CheckBox
-					initialChecked={todo.isCompleted}
-					changeChecked={changeChecked}
-				/>
-				<EditableTodo
-					initialValue={todo.todo}
-					deleteTodo={deleteTodo}
-					changeText={changeText}
-				/>
-			</label>
-		</StyledList>
-	);
+  return (
+    <StyledList>
+      <label>
+        <CheckBox
+          initialChecked={todo.isCompleted}
+          changeChecked={changeChecked}
+        />
+        <EditableTodo
+          initialValue={todo.todo}
+          deleteTodo={deleteTodo}
+          changeText={changeText}
+        />
+      </label>
+    </StyledList>
+  );
 };
 
 export default TodoItem;
 
 const StyledList = styled.li`
-	list-style: none;
-	margin: 0.2rem 0;
+  list-style: none;
+  margin: 0.2rem 0;
 `;

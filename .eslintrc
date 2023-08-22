@@ -1,5 +1,5 @@
 {
-	"rules": {
-		"testing-library/no-unnecessary-act": "off"
-	}
+  "rules": {
+    "testing-library/no-unnecessary-act": "off"
+  }
 }

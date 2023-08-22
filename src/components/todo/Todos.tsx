@@ -5,14 +5,14 @@ import NewTodo from "components/todo/NewTodo";
 import TodoList from "./TodoList";
 
 const Todos = () => {
-	const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
-	return (
-		<TodosProvider value={{ todos, setTodos }}>
-			<NewTodo />
-			<TodoList />
-		</TodosProvider>
-	);
+  return (
+    <TodosProvider value={{ todos, setTodos }}>
+      <NewTodo />
+      <TodoList />
+    </TodosProvider>
+  );
 };
 
 export default Todos;
